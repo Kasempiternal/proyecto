@@ -1,9 +1,6 @@
-package rest.alcoholimpiadas;
+package demo.rest;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
-import rest.alcoholimpiadas.*;
-
 
 @XmlRootElement
 public class User {
@@ -14,7 +11,7 @@ public class User {
 	private int type;
 	private String pass;
 	
-	
+
 	public User() {
 		super();
 	}
