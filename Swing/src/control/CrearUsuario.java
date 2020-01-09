@@ -77,7 +77,7 @@ public class CrearUsuario  extends JFrame{
 	private void initialize() throws ClassNotFoundException, SQLException{
 		
 		this.setBounds(100, 100, 373, 255);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
 		Fname = new JTextField();
@@ -124,6 +124,7 @@ public class CrearUsuario  extends JFrame{
 		
 		btnCrearUsuario.setBounds(85, 181, 117, 29);
 		this.getContentPane().add(btnCrearUsuario);
+		
 		
 		
 		

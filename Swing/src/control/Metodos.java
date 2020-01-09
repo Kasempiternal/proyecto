@@ -1,5 +1,6 @@
 package control;
 
+import java.io.File;
 import java.sql.*;
 
 public class Metodos {
@@ -7,6 +8,19 @@ public class Metodos {
 	static Connection conn;
 	private int id = 0;
 	static BaseDatosConexion bd = new BaseDatosConexion();
+	
+	public boolean comprobarCheck() {
+		boolean exists =false;
+		
+		File file = new File("src/control/data.txt");
+	    exists = file.exists();
+	    if (file.exists() && file.isFile())
+	    {
+	    	exists = true;
+	    }
+		
+		return exists;
+	}
 
 	public boolean checkUsername(String username, String pass) {
 
