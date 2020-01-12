@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126408673410",
+    "firebase_url": "https://proyectoalcoholimpiadas.firebaseio.com",
+    "project_id": "proyectoalcoholimpiadas",
+    "storage_bucket": "proyectoalcoholimpiadas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126408673410:android:2c39d18b028c0a32d8cc9b",
+        "android_client_info": {
+          "package_name": "com.example.mainmenu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126408673410-85nel3k8d6uaike14vr9f3dek0slp1a2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mainmenu",
+            "certificate_hash": "5bf4fea49b4f9b6f97b273b19a64538ed163e8bf"
+          }
+        },
+        {
+          "client_id": "126408673410-0v643s1v9sdkg1nsuh6m0qu1gr5j4vqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFTqK-5nNVKtB14e6kBpX2nN9oFr1nys4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126408673410-0v643s1v9sdkg1nsuh6m0qu1gr5j4vqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
