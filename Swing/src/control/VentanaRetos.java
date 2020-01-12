@@ -21,7 +21,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
-public class VentanaPrinci extends JFrame {
+public class VentanaRetos extends JFrame {
 	static Metodos method = new Metodos ();
     private DefaultTableModel model;
 	private JFrame frame;
@@ -37,7 +37,7 @@ public class VentanaPrinci extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrinci window = new VentanaPrinci();
+					VentanaRetos window = new VentanaRetos();
 					window.setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class VentanaPrinci extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public VentanaPrinci() throws ClassNotFoundException, SQLException {
+	public VentanaRetos() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
 	
@@ -78,7 +78,7 @@ public class VentanaPrinci extends JFrame {
 	contentPane.add(new JScrollPane(table), BorderLayout.CENTER);
 	
 	
-	JButton retobtn = new JButton("Ver Retos");
+	JButton retobtn = new JButton("Ver Usuarios");
 	retobtn.setBounds(73, 207, 89, 23);
 
 	contentPane.add(retobtn);
@@ -90,9 +90,9 @@ public class VentanaPrinci extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			VentanaRetos reto = null;
+			VentanaPrinci pri = null;
 			try {
-				reto = new VentanaRetos();
+				pri = new VentanaPrinci();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -100,7 +100,7 @@ public class VentanaPrinci extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			reto.setVisible(true);
+			pri.setVisible(true);
 			
 			
 			
@@ -109,7 +109,7 @@ public class VentanaPrinci extends JFrame {
 		
 	});
 
-	JButton loginbtn = new JButton("Borrar Usuario");
+	JButton loginbtn = new JButton("Borrar Reto");
 	loginbtn.setBounds(73, 207, 89, 23);
 
 	contentPane.add(loginbtn);
@@ -124,7 +124,7 @@ public class VentanaPrinci extends JFrame {
 			 String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
 			id_columna = Integer.parseInt(id);
 			System.out.println("llega");
-			method.deleteUser(id_columna);
+			method.deleteReto(id_columna);
 			
 			
 				
@@ -159,9 +159,9 @@ public class VentanaPrinci extends JFrame {
 			String type=table.getModel().getValueAt(table.getSelectedRow(), 2).toString();
 			int type_columna = Integer.parseInt(type);
 			String pass=table.getModel().getValueAt(table.getSelectedRow(), 3).toString();
-			User u = new User(id_columna,name,type_columna,pass);
+			Reto u = new Reto(id_columna,name,type_columna,pass);
 			System.out.println("llega");
-			method.updateUser(u,pos);
+			method.updateReto(u,pos);
 			
 			TablaNueva();
 			
@@ -170,7 +170,7 @@ public class VentanaPrinci extends JFrame {
 		
 	});
 	
-	JButton crearbtn = new JButton("Crear Usuario");
+	JButton crearbtn = new JButton("Crear Reto");
 	crearbtn.setBounds(73, 207, 89, 23);
 
 	contentPane.add(crearbtn);
@@ -179,9 +179,9 @@ public class VentanaPrinci extends JFrame {
 
 	{
 			public void actionPerformed(ActionEvent e) {
-				CrearUsuario use = null;
+				CrearReto use = null;
 				try {
-					use = new CrearUsuario();
+					use = new CrearReto();
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -208,14 +208,14 @@ public class VentanaPrinci extends JFrame {
 			e2.printStackTrace();
 		}
 
-		String sqltable = "SELECT * FROM User";
+		String sqltable = "SELECT * FROM Reto";
 		Statement stm;
 		 model = new DefaultTableModel();
 
-		model.addColumn("ID");
+		model.addColumn("Id Reto");
 		model.addColumn("Nombre");
-		model.addColumn("Tipo");
-		model.addColumn("Pass");
+		model.addColumn("Maximo");
+		model.addColumn("Contrasena");
 
 		table.setModel(model);
 

@@ -76,6 +76,35 @@ public class Metodos {
 		}
 		return checkUserid;
 	}
+	//Metodo necesario para el Test
+	public int getId(String username, String pass) {
+
+		PreparedStatement ps;
+		ResultSet rs;
+		boolean checkUserid = false;
+
+		String query1 = "SELECT id_user FROM User WHERE user_name =? AND user_pass=?";
+
+		try {
+			ps = bd.Conectar().prepareStatement(query1);
+			ps.setString(1, username);
+			ps.setString(2, pass);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				id = rs.getInt(1);
+				
+					
+				
+			} else {
+				id=0;
+			}
+		} catch (SQLException | BDExcepcion ex) {
+
+		}
+		return id;
+	}
 
 	public void deleteUser(int id) {
 		int cont = 0;
@@ -101,6 +130,29 @@ public class Metodos {
 		}
 
 	}
+	
+	public void deleteReto(int id) {
+		int cont = 0;
+		PreparedStatement ps;
+		boolean rs;
+		
+
+			String query1 = "DELETE FROM Reto WHERE idReto = ?;";
+
+			try {
+				ps = bd.Conectar().prepareStatement(query1);
+				ps.setInt(1, id);
+				rs = ps.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BDExcepcion e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	
 	public void updateUser(User u,int pos) {
 		
 		PreparedStatement ps;
@@ -130,6 +182,35 @@ public class Metodos {
 
 	}
 	
+public void updateReto(Reto u,int pos) {
+		
+		PreparedStatement ps;
+
+			String query1 = "UPDATE Reto SET idReto=?, nombreReto=?, maxReto=?, passReto=? WHERE idReto="+pos+" ;";
+			
+			
+
+			try {
+				ps = bd.Conectar().prepareStatement(query1);
+				 ps.setInt (1, u.getIdReto());
+			      ps.setString (2, u.getName());
+			      ps.setInt (3, u.getMax());
+			      ps.setString(4, u.getPass());
+				
+				 ps.execute();
+				 
+				 System.out.println("llega");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BDExcepcion e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+
+	}
+	
 	public void crearUsuario(String nombre, int tipo, String pass) {
 		PreparedStatement ps;
 		
@@ -142,6 +223,60 @@ public class Metodos {
 			      ps.setString (1, nombre);
 			      ps.setInt (2, tipo);
 			      ps.setString(3, pass);
+				
+				 ps.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BDExcepcion e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		      
+
+		      // execute the preparedstatement
+		     
+		
+	}
+	public void crearReto(String nombre, int tipo, String pass) {
+		PreparedStatement ps;
+		
+		String query = " insert into Reto (nombreReto, maxReto, passReto) values (?, ?, ?)";
+
+		      // create the mysql insert preparedstatement
+		    
+		      try {
+		    	  ps = bd.Conectar().prepareStatement(query);
+			      ps.setString (1, nombre);
+			      ps.setInt (2, tipo);
+			      ps.setString(3, pass);
+				
+				 ps.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BDExcepcion e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		      
+
+		      // execute the preparedstatement
+		     
+		
+	}
+	public void insertarUsuario(int idUser, int idReto) {
+		PreparedStatement ps;
+		
+		String query = " insert into User_Reto (idUser, idReto) values (?, ?)";
+
+		      // create the mysql insert preparedstatement
+		    
+		      try {
+		    	  ps = bd.Conectar().prepareStatement(query);
+			      ps.setInt (1, idUser);
+			      ps.setInt (2, idReto);
+			     
 				
 				 ps.execute();
 			} catch (SQLException e) {
