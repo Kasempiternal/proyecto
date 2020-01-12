@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -38,7 +39,7 @@ public class VentanaPrinci extends JFrame {
 			public void run() {
 				try {
 					VentanaPrinci window = new VentanaPrinci();
-					window.setVisible(false);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -64,7 +65,7 @@ public class VentanaPrinci extends JFrame {
 	
 	
 	public void tableChanged( ) {
-	this.setBounds(100, 100, 600, 500);
+	this.setBounds(100, 100, 550, 600);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.getContentPane().setLayout(null);
 
@@ -101,7 +102,8 @@ public class VentanaPrinci extends JFrame {
 				e1.printStackTrace();
 			}
 			reto.setVisible(true);
-			
+			reto.setSize(550, 600);
+			setVisible(false);
 			
 			
 		}
@@ -121,17 +123,23 @@ public class VentanaPrinci extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			 String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
+			 try {
+				 String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
 			id_columna = Integer.parseInt(id);
 			System.out.println("llega");
 			method.deleteUser(id_columna);
-			
+			} catch (Exception e2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+				
+			 
 			
 				
 				TablaNueva();
-			
-			
-			
+			//if(table.getSelectedRow() == 0) {
+				
+			//}
 		}
 		
 		
@@ -144,13 +152,12 @@ public class VentanaPrinci extends JFrame {
 
 	contentPane.add(updatebtn);
 
-	updatebtn.addActionListener(new ActionListener()
-
-	{
-
+	ActionListener ac = new ActionListener() {
+			
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			// TODO Auto-generated method stub
+			try {
 			String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
 			System.out.println(id);
 			id_columna = Integer.parseInt(id);
@@ -163,12 +170,16 @@ public class VentanaPrinci extends JFrame {
 			System.out.println("llega");
 			method.updateUser(u,pos);
 			
-			TablaNueva();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 			
+			TablaNueva();
 		}
-		
-		
-	});
+	};
+	updatebtn.addActionListener(ac);
+
 	
 	JButton crearbtn = new JButton("Crear Usuario");
 	crearbtn.setBounds(73, 207, 89, 23);
@@ -176,6 +187,7 @@ public class VentanaPrinci extends JFrame {
 	contentPane.add(crearbtn);
 
 	crearbtn.addActionListener(new ActionListener()
+	
 
 	{
 			public void actionPerformed(ActionEvent e) {
@@ -191,13 +203,40 @@ public class VentanaPrinci extends JFrame {
 				}
 				use.setVisible(true);
 				
-			}
+				TablaNueva();
+			};
 			
 	});
+	JButton chat = new JButton("Chat");
+	crearbtn.setBounds(73, 207, 89, 23);
+
+	contentPane.add(chat);
 	
+	chat.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		 MarcoCliente mc = new MarcoCliente();
+			mc.setVisible(true);
+		}
+	});
 	TablaNueva();
 	
 }
+	public void modificar() {
+		String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
+		System.out.println(id);
+		id_columna = Integer.parseInt(id);
+		int pos = id_columna;
+		String name=table.getModel().getValueAt(table.getSelectedRow(), 1).toString();
+		String type=table.getModel().getValueAt(table.getSelectedRow(), 2).toString();
+		int type_columna = Integer.parseInt(type);
+		String pass=table.getModel().getValueAt(table.getSelectedRow(), 3).toString();
+		User u = new User(id_columna,name,type_columna,pass);
+		System.out.println("llega");
+		method.updateUser(u,pos);
+	}
 	
 	public void TablaNueva() {
 		Connection conn = null;

@@ -14,6 +14,7 @@ import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
@@ -39,6 +40,7 @@ public class VentanaRetos extends JFrame {
 				try {
 					VentanaRetos window = new VentanaRetos();
 					window.setVisible(false);
+					window.setSize(800, 600);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,7 +103,7 @@ public class VentanaRetos extends JFrame {
 				e1.printStackTrace();
 			}
 			pri.setVisible(true);
-			
+			setVisible(false);
 			
 			
 		}
@@ -120,11 +122,16 @@ public class VentanaRetos extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-			 String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
+			try {
+				 String id=table.getModel().getValueAt(table.getSelectedRow(), 0).toString();
 			id_columna = Integer.parseInt(id);
 			System.out.println("llega");
 			method.deleteReto(id_columna);
+			}catch (Exception e2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			
 			
 				

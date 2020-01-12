@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -14,13 +15,15 @@ import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class CrearReto  extends JFrame{
 	static Metodos method = new Metodos ();
 	private JFrame frame;
 	private JTextField Fname;
-	private JTextField Fpass;
+	private JPasswordField Fpass;
 	private JComboBox comboBox;
+	private VentanaPrinci  vp;
 
 	/**
 	 * Launch the application.
@@ -81,31 +84,34 @@ public class CrearReto  extends JFrame{
 		this.getContentPane().setLayout(null);
 		
 		Fname = new JTextField();
-		Fname.setBounds(142, 67, 130, 26);
+		Fname.setBounds(142, 56, 130, 26);
 		this.getContentPane().add(Fname);
 		Fname.setColumns(10);
 		
-		Fpass = new JTextField();
-		Fpass.setBounds(142, 143, 130, 26);
+		Fpass = new JPasswordField();
+		Fpass.setBounds(142, 128, 130, 26);
 		this.getContentPane().add(Fpass);
 		Fpass.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre Reto:");
-		lblNewLabel_1.setBounds(24, 72, 106, 16);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(23, 60, 106, 16);
 		this.getContentPane().add(lblNewLabel_1);
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("Contraseña:");
-		lblNewLabel_3.setBounds(34, 148, 94, 16);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(23, 132, 94, 16);
 		this.getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblCrearUsuario = new JLabel("Crear Reto");
-		lblCrearUsuario.setBounds(142, 21, 106, 34);
+		lblCrearUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblCrearUsuario.setBounds(124, 11, 106, 34);
 		this.getContentPane().add(lblCrearUsuario);
 		
 		
 		 comboBox = new JComboBox();
-		comboBox.setBounds(150, 105, 85, 27);
+		comboBox.setBounds(152, 93, 85, 27);
 		this.getContentPane().add(comboBox);
 		
 		
@@ -137,8 +143,21 @@ public class CrearReto  extends JFrame{
 			}
 		});
 		
-		btnCrearUsuario.setBounds(85, 181, 117, 29);
+		btnCrearUsuario.setBounds(44, 165, 117, 29);
 		this.getContentPane().add(btnCrearUsuario);
+		
+		JButton btnActualizar = new JButton("ActualizarDatos ");
+		btnActualizar.setBounds(191, 165, 137, 29);
+		getContentPane().add(btnActualizar);
+		btnActualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				vp.modificar();
+
+			}
+		});
 		
 		
 		

@@ -75,21 +75,21 @@ public class Login {
 		JLabel loginlbl = new JLabel("LOGIN");
 		loginlbl.setHorizontalAlignment(SwingConstants.CENTER);
 		loginlbl.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		loginlbl.setBounds(123, 11, 174, 64);
+		loginlbl.setBounds(111, 10, 174, 64);
 		login.getContentPane().add(loginlbl);
 		
 		nombretxt = new JTextField();
-		nombretxt.setBounds(190, 104, 131, 20);
+		nombretxt.setBounds(190, 85, 131, 20);
 		login.getContentPane().add(nombretxt);
 		nombretxt.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(59, 107, 99, 17);
+		lblNewLabel.setBounds(59, 85, 99, 17);
 		login.getContentPane().add(lblNewLabel);
 		
 		contratxt = new JPasswordField();
-		contratxt.setBounds(190, 152, 131, 20);
+		contratxt.setBounds(190, 136, 131, 20);
 		login.getContentPane().add(contratxt);
 		contratxt.setColumns(10);
 		
@@ -137,11 +137,11 @@ public class Login {
 		contratxt.setText(pass);
 		
 		JCheckBox check1 = new JCheckBox("Recuerdame");
-        check1.setBounds(10,10,150,30);
+        check1.setBounds(296,224,150,30);
         login.getContentPane().add(check1);
 		
 		JButton loginbtn = new JButton("Login");
-		loginbtn.setBounds(73, 207, 89, 23);
+		loginbtn.setBounds(69, 185, 89, 23);
 		loginbtn.addActionListener(new ActionListener() {
 			
 			
@@ -162,12 +162,12 @@ public class Login {
 						        fos.close();
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
-								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null, "Error al Logearse", "ERROR", JOptionPane.ERROR_MESSAGE);
 							}
 					        
 						
 						}
-					
+						}
 						VentanaPrinci cf;
 						try {
 							cf = new VentanaPrinci();
@@ -178,16 +178,13 @@ public class Login {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}
-					
-					
 			}
 		});
 		login.getContentPane().add(loginbtn);
 		
 		
 		JButton exitbtn = new JButton("Cerrar");
-		exitbtn.setBounds(261, 207, 89, 23);
+		exitbtn.setBounds(263, 185, 89, 23);
 		exitbtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -200,7 +197,7 @@ public class Login {
 		
 		JLabel label = new JLabel("Contrasena");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label.setBounds(59, 155, 99, 17);
+		label.setBounds(59, 136, 99, 17);
 		login.getContentPane().add(label);
 		
 		
