@@ -67,6 +67,7 @@
         android:drawableLeft="@drawable/key"
         android:drawablePadding="10dp"
         android:hint="Pass"
+        android:inputType="textPassword"
         android:layout_below="@+id/username"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -100,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Remove"
+            android:text="GO TO LOGIN"
             android:layout_gravity="bottom"
             android:background="@drawable/singupremove_button"
 

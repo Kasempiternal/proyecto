@@ -53,47 +53,57 @@ public class MainActivity extends AppCompatActivity {
         login.setEnabled(true);
         singup.setEnabled(true);
 
+        final FirebaseUser curUser = auth.getInstance().getCurrentUser();
 
 
-        login.setOnClickListener(new View.OnClickListener() {
+
+            login.setOnClickListener(new View.OnClickListener() {
 
 
-            @Override
-            public void onClick(View v) {
-               String emailst = email.getText().toString();
-               String passst = pass.getText().toString();
+                @Override
+                public void onClick(View v) {
+                    String emailst = email.getText().toString();
+                    String passst = pass.getText().toString();
 
-               if(emailst.isEmpty() || passst.isEmpty()){
-                   openErrorDialog();
-               }
-               else{
-                   auth.signInWithEmailAndPassword(emailst,passst).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                       @Override
-                       public void onComplete(@NonNull Task<AuthResult> task) {
-                           if (task.isSuccessful()){
-                               Intent intent = new Intent(MainActivity.this, GroupChat.class);
-                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                               startActivity(intent);
-                               finish();
-                           } else{
-                               Toast.makeText(MainActivity.this,"Authentication Failed! Try again or use another acc.", Toast.LENGTH_SHORT).show();
-                           }
-                       }
-                   });
-               }
+                    if (emailst.isEmpty() || passst.isEmpty()) {
+                        openErrorDialog();
+                    } else {
+                        auth.signInWithEmailAndPassword(emailst, passst).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Intent intent = new Intent(MainActivity.this, GroupChat.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Authentication Failed! Try again or use another acc.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
 
-            }
-        });
+                }
+            });
 
-        singup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignup();
+            singup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openSignup();
 
-            }
-        });
+                }
+            });
 
 
+        if (curUser != null) {
+            Intent intent = new Intent(MainActivity.this, GroupChat.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
+        }else{
+
+        }
     }
 
 

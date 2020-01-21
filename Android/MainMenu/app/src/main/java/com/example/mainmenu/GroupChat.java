@@ -148,15 +148,10 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
 
         final FirebaseUser curUser = firebaseAuth.getInstance().getCurrentUser();
 
-        if(curUser != null){
+        if (curUser != null) {
             user.setUid(curUser.getUid());
             user.setEmail(curUser.getEmail());
             user.setName(curUser.getDisplayName());
-        }else{
-            Intent inten = new Intent(GroupChat.this,Register.class);
-            startActivity(inten);
-            finish();
-        }
 
 
         firebaseDatabase.getReference("Users").child(curUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -179,18 +174,18 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 Iterator iterator = dataSnapshot.getChildren().iterator();
-                if(dataSnapshot.exists()){
-                    while(iterator.hasNext()) {
+                if (dataSnapshot.exists()) {
+                    while (iterator.hasNext()) {
                         String mesage = (String) ((DataSnapshot) iterator.next()).getValue();
                         String name = (String) ((DataSnapshot) iterator.next()).getValue();
 
-                    Message message = new Message();
-                    message.setKey(dataSnapshot.getKey());
-                    message.setMessage(mesage);
-                    message.setName(name);
-                    messages.add(message);
-                    displayMessages(messages);
-                    Toast.makeText(getApplicationContext(),"Sent",Toast.LENGTH_SHORT).show();
+                        Message message = new Message();
+                        message.setKey(dataSnapshot.getKey());
+                        message.setMessage(mesage);
+                        message.setName(name);
+                        messages.add(message);
+                        displayMessages(messages);
+
                     }
                 }
 
@@ -199,17 +194,16 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     Message message = dataSnapshot.getValue(Message.class);
                     message.setKey(dataSnapshot.getKey());
 
                     List<Message> newMessage = new ArrayList<>();
 
-                    for(Message m: messages){
-                        if(m.getKey().equals(message.getKey())){
+                    for (Message m : messages) {
+                        if (m.getKey().equals(message.getKey())) {
                             newMessage.add(message);
-                        }
-                        else{
+                        } else {
                             newMessage.add(m);
                         }
                     }
@@ -217,7 +211,6 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
                     messages = newMessage;
                     displayMessages(messages);
                 }
-
 
 
             }
@@ -229,11 +222,10 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
 
                 List<Message> newMessages = new ArrayList<Message>();
 
-                for(Message m: messages){
-                    if(!m.getKey().equals(message.getKey())){
+                for (Message m : messages) {
+                    if (!m.getKey().equals(message.getKey())) {
                         newMessages.add(message);
-                    }
-                    else{
+                    } else {
 
                     }
                 }
@@ -255,6 +247,13 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
             }
         });
     }
+        else{
+            Intent inten = new Intent(GroupChat.this,Register.class);
+            startActivity(inten);
+            finish();
+        }
+
+    }
 
     @Override
     protected void onResume() {
@@ -265,7 +264,11 @@ public class GroupChat extends AppCompatActivity implements View.OnClickListener
     }
 
     private void displayMessages(List<Message> messages){
-        recyclerView.setLayoutManager(new LinearLayoutManager(GroupChat.this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(GroupChat.this));
         messageAdapter = new MessageAdapter(GroupChat.this,messages,databaseReference);
         recyclerView.setAdapter(messageAdapter);
     }

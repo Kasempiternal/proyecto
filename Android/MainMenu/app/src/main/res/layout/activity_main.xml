@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@mipmap/logo_principal" />
+        android:src="@mipmap/logo" />
 
     <EditText
         android:id="@+id/emailtext"
@@ -37,6 +37,7 @@
         android:drawableLeft="@drawable/login_password"
         android:drawablePadding="10dp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textColorHighlight="@color/white"/>

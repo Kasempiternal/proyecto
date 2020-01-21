@@ -94,7 +94,7 @@ public class Menu extends AppCompatActivity {
                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                startActivity(intent);
            }
-           case R.id.new_group: {}
+
        }
 
         return super.onOptionsItemSelected(item);

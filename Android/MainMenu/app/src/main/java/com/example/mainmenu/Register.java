@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.PrintStream;
+
 public class Register extends AppCompatActivity {
 
 
@@ -61,12 +63,15 @@ public class Register extends AppCompatActivity {
     }
 
     public void RegisterUser(View v){
-        pb.setVisibility(View.VISIBLE);
-        final String emailt = email.getText().toString();
-        final String passt = pass.getText().toString();
-        final String namet = username.getText().toString();
 
-        if(!emailt.equals("") && !passt.equals("") && !namet.equals("")){
+        final String emailt = email.getText().toString();
+        final String namet = username.getText().toString();
+        final String passt = pass.getText().toString();
+
+        Users u = new Users();
+
+        if(!emailt.equals("") && !passt.equals("") && !namet.equals("") && passt.length()>=6){
+            pb.setVisibility(View.VISIBLE);
             auth.createUserWithEmailAndPassword(emailt,passt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -83,6 +88,7 @@ public class Register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     pb.setVisibility(View.GONE);
+                                    Toast.makeText(getApplicationContext(),"Created",Toast.LENGTH_SHORT).show();
                                     finish();
                                     Intent i = new Intent(Register.this,GroupChat.class);
                                     startActivity(i);
@@ -98,6 +104,12 @@ public class Register extends AppCompatActivity {
             }
             });
         }
+        else{
+            pb.setVisibility(View.INVISIBLE);
+            Toast.makeText(this,"Is there any field blank? Pass must be 6 characters long.",Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 
