@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 
 public class Message {
 
-    String message,name,key;
+    String message, name, key;
 
-    public Message(){}
+    public Message() {
+    }
 
     public Message(String message, String name) {
         this.message = message;
@@ -42,9 +43,9 @@ public class Message {
     @Override
     public String toString() {
         return "Message{"
-                +"message'" +message+'\''
-                +", name='"+name+'\''
-                +", key='"+key+'\''
-                +'}';
+                + "message'" + message + '\''
+                + ", name='" + name + '\''
+                + ", key='" + key + '\''
+                + '}';
     }
 }

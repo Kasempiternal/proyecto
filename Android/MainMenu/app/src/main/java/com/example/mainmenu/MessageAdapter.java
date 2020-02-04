@@ -27,13 +27,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     DatabaseReference messagedb;
 
 
-
-    public MessageAdapter(Context context,List<Message> messages, DatabaseReference messagedb){
+    public MessageAdapter(Context context, List<Message> messages, DatabaseReference messagedb) {
 
         this.context = context;
-        this.messages=messages;
-        this.messagedb=messagedb;
-
+        this.messages = messages;
+        this.messagedb = messagedb;
 
 
     }
@@ -42,7 +40,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     @NonNull
     @Override
     public MessageAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_message,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_message, parent, false);
         return new MessageAdapterViewHolder(view);
     }
 
@@ -50,13 +48,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     public void onBindViewHolder(@NonNull MessageAdapterViewHolder holder, int position) {
 
         Message message = messages.get(position);
-        if(message.getName().equals(AllMethods.name)){
-            holder.tvTitle.setText("You:"+ message.getMessage());
+        if (message.getName().equals(AllMethods.name)) {
+            holder.tvTitle.setText("You:" + message.getMessage());
             holder.tvTitle.setGravity(Gravity.START);
             holder.l.setBackgroundColor(Color.parseColor("#EF9E73"));
-        }
-        else{
-            holder.tvTitle.setText(message.getName()+":"+message.getMessage());
+        } else {
+            holder.tvTitle.setText(message.getName() + ":" + message.getMessage());
             holder.imageButton.setVisibility(View.GONE);
         }
     }
@@ -66,13 +63,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
         return messages.size();
     }
 
-    public class MessageAdapterViewHolder extends RecyclerView.ViewHolder{
+    public class MessageAdapterViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
         ImageButton imageButton;
         LinearLayout l;
 
-        public MessageAdapterViewHolder(View itemView){
+        public MessageAdapterViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.ltitle);
             imageButton = itemView.findViewById(R.id.delete);

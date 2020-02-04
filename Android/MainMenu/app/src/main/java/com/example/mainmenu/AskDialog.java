@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import com.example.mainmenu.CreateDialog;
 import com.example.mainmenu.JoinDialog;
 import com.example.mainmenu.R;
@@ -18,7 +19,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class AskDialog extends AppCompatDialogFragment {
 
-    private Button create,join;
+    private Button create, join;
 
 
     @Override
@@ -63,15 +64,13 @@ public class AskDialog extends AppCompatDialogFragment {
                 });
 
 
-
         return builder.create();
     }
 
     public void openPopupJoin() {
         JoinDialog jd = new JoinDialog();
-        jd.show(getFragmentManager(),"");
+        jd.show(getFragmentManager(), "");
     }
-
 
 
     public void openPopupCreate() {

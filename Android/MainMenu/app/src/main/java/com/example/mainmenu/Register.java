@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mainmenu.Users.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,20 +19,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.PrintStream;
-
 public class Register extends AppCompatActivity {
 
 
-    EditText email,username,pass;
+    EditText email, username, pass;
     DatabaseReference reference;
     FirebaseAuth auth;
     ProgressBar pb;
-
-    Button ok,clear;
+    Button ok, clear;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         email = findViewById(R.id.email);
@@ -62,7 +58,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void RegisterUser(View v){
+    public void RegisterUser(View v) {
 
         final String emailt = email.getText().toString();
         final String namet = username.getText().toString();
@@ -70,12 +66,12 @@ public class Register extends AppCompatActivity {
 
         Users u = new Users();
 
-        if(!emailt.equals("") && !passt.equals("") && !namet.equals("") && passt.length()>=6){
+        if (!emailt.equals("") && !passt.equals("") && !namet.equals("") && passt.length() >= 6) {
             pb.setVisibility(View.VISIBLE);
-            auth.createUserWithEmailAndPassword(emailt,passt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(emailt, passt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         //create user on database
 
                         FirebaseUser user = auth.getCurrentUser();
@@ -86,37 +82,34 @@ public class Register extends AppCompatActivity {
                         reference.child(user.getUid()).setValue(u).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     pb.setVisibility(View.GONE);
-                                    Toast.makeText(getApplicationContext(),"Created",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Created", Toast.LENGTH_SHORT).show();
                                     finish();
-                                    Intent i = new Intent(Register.this,GroupChat.class);
+                                    Intent i = new Intent(Register.this, GroupChat.class);
                                     startActivity(i);
-                                }
-                                else{
+                                } else {
                                     pb.setVisibility(View.GONE);
-                                    Toast.makeText(getApplicationContext(),"User could not be created",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "User could not be created", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
                         });
+                    }
                 }
-            }
             });
-        }
-        else{
+        } else {
             pb.setVisibility(View.INVISIBLE);
-            Toast.makeText(this,"Is there any field blank? Pass must be 6 characters long.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Is there any field blank? Pass must be 6 characters long.", Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
 
-
-    public void login(View v){
-        Intent i = new Intent(Register.this,MainActivity.class);
-            startActivity(i);
+    public void login(View v) {
+        Intent i = new Intent(Register.this, Principal.class);
+        startActivity(i);
 
     }
 }

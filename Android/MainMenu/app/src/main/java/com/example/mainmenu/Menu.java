@@ -1,4 +1,4 @@
-package com.example.mainmenu.Users;
+package com.example.mainmenu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mainmenu.CreateDialog;
 import com.example.mainmenu.JoinDialog;
-import com.example.mainmenu.MainActivity;
+import com.example.mainmenu.Principal;
 import com.example.mainmenu.R;
 import com.example.mainmenu.Register;
-import com.example.mainmenu.SignUp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 
@@ -38,7 +36,7 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
-        uid= FirebaseAuth.getInstance().getUid();
+        uid = FirebaseAuth.getInstance().getUid();
 
         //String user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         verifyUserLoggedin();
@@ -47,8 +45,8 @@ public class Menu extends AppCompatActivity {
 
         //usertext.setText(user);
 
-        this.join = (Button) findViewById(R.id.join);
-        this.create = (Button) findViewById(R.id.create);
+        this.join = findViewById(R.id.join);
+        this.create = findViewById(R.id.create);
 
         join.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +76,8 @@ public class Menu extends AppCompatActivity {
         createDialog.show(getSupportFragmentManager(), "create");
     }
 
-    private void verifyUserLoggedin(){
-        if(uid == null){
+    private void verifyUserLoggedin() {
+        if (uid == null) {
             Intent intent = new Intent(this, Register.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
@@ -88,21 +86,22 @@ public class Menu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-       switch(item.getItemId()){
-           case R.id.sign_out:  { FirebaseAuth.getInstance().signOut();
-               Intent intent = new Intent(this, MainActivity.class);
-               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-               startActivity(intent);
-           }
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, Principal.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
 
-       }
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        getMenuInflater().inflate(R.menu.nav_menu,menu);
+        getMenuInflater().inflate(R.menu.nav_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 }

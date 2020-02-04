@@ -49,7 +49,7 @@ public class CreateDialog extends AppCompatDialogFragment {
                         reference.child("Groups").child(grpnamest).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                 }
                             }
                         });

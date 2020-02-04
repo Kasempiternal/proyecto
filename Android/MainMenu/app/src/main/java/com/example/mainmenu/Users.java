@@ -1,14 +1,14 @@
-package com.example.mainmenu.Users;
+package com.example.mainmenu;
 
 import androidx.annotation.NonNull;
 
 public class Users {
 
 
-   String uid,name,email;
+    String uid, name, email;
 
 
-   public Users(){
+    public Users() {
 
     }
 
@@ -41,9 +41,9 @@ public class Users {
     @Override
     public String toString() {
         return "User{"
-                + "uid'" +uid+'\''
-                +", name='"+name+'\''
-                +", email='"+email+'\''
-                +'}';
+                + "uid'" + uid + '\''
+                + ", name='" + name + '\''
+                + ", email='" + email + '\''
+                + '}';
     }
 }
