@@ -35,6 +35,8 @@ public class Login {
 	private JTextField nombretxt;
 	private JPasswordField contratxt;
 	
+	
+	
 
 	/**
 	 * Launch the application.
