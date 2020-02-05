@@ -8,7 +8,7 @@ public class Metodos {
 	static Connection conn;
 	private int id = 0;
 	static BaseDatosConexion bd = new BaseDatosConexion();
-	
+	//Comprueba que el fichero existe
 	public boolean comprobarCheck() {
 		boolean exists =false;
 		
@@ -21,7 +21,7 @@ public class Metodos {
 		
 		return exists;
 	}
-
+	//Comprueba si el usuario del login existe
 	public boolean checkUsername(String username, String pass) {
 
 		PreparedStatement ps;
@@ -47,7 +47,7 @@ public class Metodos {
 		}
 		return checkUser;
 	}
-
+	//Comprueba que la id del usuario que intenta entrar es la correcta
 	public boolean checkId(String username, String pass) {
 
 		PreparedStatement ps;
@@ -105,7 +105,7 @@ public class Metodos {
 		}
 		return id;
 	}
-
+	//borra el usuario que le pasamos
 	public void deleteUser(int id) {
 		int cont = 0;
 		PreparedStatement ps;
@@ -130,7 +130,7 @@ public class Metodos {
 		}
 
 	}
-	
+	//borra el reto que le pasamos
 	public void deleteReto(int id) {
 		int cont = 0;
 		PreparedStatement ps;
@@ -152,7 +152,7 @@ public class Metodos {
 			}
 		}
 
-	
+	//Actualiza el usuario que le pasamos
 	public void updateUser(User u,int pos) {
 		
 		PreparedStatement ps;
@@ -181,7 +181,7 @@ public class Metodos {
 		
 
 	}
-	
+	//Actualiza el reto que le pasamos
 public void updateReto(Reto u,int pos) {
 		
 		PreparedStatement ps;
@@ -210,7 +210,7 @@ public void updateReto(Reto u,int pos) {
 		
 
 	}
-	
+	//crea el usuario deseado
 	public void crearUsuario(String nombre, int tipo, String pass) {
 		PreparedStatement ps;
 		
@@ -238,6 +238,7 @@ public void updateReto(Reto u,int pos) {
 		     
 		
 	}
+	//crea el reto deseado
 	public void crearReto(String nombre, int tipo, String pass) {
 		PreparedStatement ps;
 		
@@ -265,6 +266,7 @@ public void updateReto(Reto u,int pos) {
 		     
 		
 	}
+	//inserta el usuario que le pasamos
 	public void insertarUsuario(int idUser, int idReto) {
 		PreparedStatement ps;
 		
@@ -292,7 +294,7 @@ public void updateReto(Reto u,int pos) {
 		     
 		
 	}
-
+	//cuenta losd admin para que por lo menos siempre tengamos 1
 	public int contarAdmin() {
 		int cont = 0;
 		PreparedStatement ps;

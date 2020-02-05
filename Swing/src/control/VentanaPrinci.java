@@ -207,7 +207,24 @@ public class VentanaPrinci extends JFrame {
 			};
 			
 	});
-	JButton chat = new JButton("Chat");
+	JButton sv = new JButton("Servidor Chat");
+	crearbtn.setBounds(73, 207, 89, 23);
+
+	contentPane.add(sv);
+	
+	sv.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			MarcoServidor ms = new MarcoServidor();
+			ms.setVisible(true);
+			
+			
+			
+		}
+	});
+	JButton chat = new JButton("Cliente Chat");
 	crearbtn.setBounds(73, 207, 89, 23);
 
 	contentPane.add(chat);
@@ -217,7 +234,10 @@ public class VentanaPrinci extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-		 MarcoCliente mc = new MarcoCliente();
+		
+			
+			
+			MarcoCliente mc = new MarcoCliente();
 			mc.setVisible(true);
 		}
 	});

@@ -202,6 +202,41 @@ public class VentanaRetos extends JFrame {
 			
 	});
 	
+	JButton sv = new JButton("Servidor Chat");
+	crearbtn.setBounds(73, 207, 89, 23);
+
+	contentPane.add(sv);
+	
+	sv.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			MarcoServidor ms = new MarcoServidor();
+			ms.setVisible(true);
+			
+			
+			
+		}
+	});
+	JButton chat = new JButton("Cliente Chat");
+	crearbtn.setBounds(73, 207, 89, 23);
+
+	contentPane.add(chat);
+	
+	chat.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+		
+			
+			
+			MarcoCliente mc = new MarcoCliente();
+			mc.setVisible(true);
+		}
+	});
+	
 	TablaNueva();
 	
 }

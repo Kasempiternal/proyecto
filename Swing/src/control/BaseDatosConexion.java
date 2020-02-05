@@ -5,14 +5,14 @@ import java.util.*;
 
 
 public class BaseDatosConexion {
-	
+	//Inicio las variables
 	static Connection conn;
 	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver" ;
-	  private static final String URL = "jdbc:mysql://localhost:3306/Alcoholimpiadas?serverTimezone=UTC" ;
+	  private static final String URL = "jdbc:mysql://localhost:3306/Alcoholimpiadas" ;
 	  private static final String USUARIO = "root" ;
 	  private static final String CONTRASEnA = "123456789" ;
 	
-	
+	//metodo conectar
 	public  Connection Conectar() throws BDExcepcion{
 		
 		try {
@@ -32,7 +32,7 @@ public class BaseDatosConexion {
 			
     }
 		
-	
+	//metodo desconectar
 	public void desconectar() throws BDExcepcion{
 		
 		try {

@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 import java.io.*;
-
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 
 //clase main en laque colocamos el marco
@@ -19,8 +20,7 @@ public class Cliente {
 		
 		MarcoCliente mimarco=new MarcoCliente();
 		//esto hace que la ventana no se pueda cambiar de tama�o
-		mimarco.setResizable(false);
-		mimarco.setTitle("Ventana Cliente");
+		mimarco.setResizable(false);mimarco.setTitle("Ventana Cliente");
 		
 		
 		
@@ -88,8 +88,9 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 		String nick_usuario=JOptionPane.showInputDialog("Nick: ");
 		//controla si el nick esta en blanco o vacio, y en ese caso sale
 		if (nick_usuario==null || (nick_usuario!=null && ("".equals(nick_usuario)))) {
-			//JOptionPane.showMessageDialog(null, "Error. Debe escribir un Nick para continuar.", "ERROR", JOptionPane.ERROR_MESSAGE);
+			
 			System.exit(0);
+			
 		}
 		
 		JLabel n_nick=new JLabel("Nick:");
@@ -223,7 +224,7 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 			PaqueteEnvio paqueteRecibido;
 			
 			//Creamos la clase Player con la ruta
-			
+			Player apl;
 
 		      
 			//creamos un bucle infinito para que siempre este a la escucha
@@ -240,7 +241,9 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 					
 					campochat.append("\n"+paqueteRecibido.getNick()+": "+paqueteRecibido.getMensaje());
 					//ejecutamos la clase para que nos lance el sonido
-					
+					apl = new Player(new FileInputStream("sound\\tic.mp3"));
+					apl.play();
+					apl.close();
 					
 					
 					
